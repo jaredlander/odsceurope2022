@@ -112,3 +112,63 @@ house |> count(Boro) |> arrange(-n)
 house |> count(Boro, sort=TRUE)
 
 house |> count(Boro, Neighborhood, sort=TRUE)
+
+# Grouped Summarizations ####
+
+mean(house$Value)
+house |> summarize(mean(Value))
+house |> summarize(AvgValue=mean(Value))
+house |> summarize(AvgValue=mean(Value), AvgYear=mean(Year))
+house |> summarize(AvgValue=mean(Value), AvgYear=mean(Year, na.rm=TRUE))
+
+house |> group_by(Boro)
+
+house |>
+    group_by(Boro) |>
+    summarize(AvgValue=mean(Value))
+
+house |>
+    group_by(Boro) |>
+    summarize(
+        AvgValue=mean(Value),
+        AvgYear=mean(Year, na.rm=TRUE),
+        TotalValue=sum(Value)
+    )
+
+
+house |>
+    group_by(Boro, Neighborhood) |>
+    summarize(
+        AvgValue=mean(Value),
+        AvgYear=mean(Year, na.rm=TRUE),
+        TotalValue=sum(Value)
+    )
+
+house |>
+    group_by(Boro) |>
+    summarize(across(c(Value, Year), mean, na.rm=TRUE), TotalValue=sum(Value))
+
+house |>
+    group_by(Boro) |>
+    summarize(
+        across(c(Value, Year), mean, na.rm=TRUE, .names='Avg{.col}'),
+        TotalValue=sum(Value)
+    )
+
+house |>
+    group_by(Boro) |>
+    summarize(
+        across(c(Value, Year), mean, na.rm=TRUE, .names='Avg{.col}'),
+        TotalValue=sum(Value), Double=TotalValue*2
+    )
+
+# for buildings with less than or equal 100 units
+# within each boro and neighborhood
+# calculate the avg value and year
+# sorted by avg value
+
+house |>
+    filter(Units <= 100) |>
+    group_by(Boro, Neighborhood) |>
+    summarize(across(c(Value, Year), mean, na.rm=TRUE, .names='Avg{.col}')) |>
+    arrange(-AvgValue)
