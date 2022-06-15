@@ -167,3 +167,26 @@ p + theme_fivethirtyeight() + scale_color_fivethirtyeight()
 p + theme_excel() + scale_color_excel()
 p + theme_excel_new() + scale_color_excel_new()
 
+# Histograms and Density Plots ####
+
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_histogram()
+ggplot(house, aes(x=ValueSqFt)) + geom_histogram(bins=10)
+ggplot(house, aes(x=ValueSqFt)) + geom_histogram(bins=50)
+ggplot(house, aes(x=ValueSqFt)) + geom_histogram(bins=100)
+
+ggplot(house, aes(x=ValueSqFt)) + geom_histogram(binwidth=15)
+ggplot(house, aes(x=ValueSqFt)) + geom_histogram(binwidth=50)
+
+ggplot(house, aes(x=ValueSqFt, color=Boro)) +
+    geom_histogram(bins=30)
+ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
+    geom_histogram(bins=30)
+
+ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
+    geom_histogram(bins=30, position=position_dodge())
+
+
+ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
+    geom_histogram(bins=30, show.legend=FALSE) +
+    facet_wrap( ~ Boro )
