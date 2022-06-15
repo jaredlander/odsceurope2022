@@ -104,3 +104,11 @@ house
 house |> arrange(Value)
 house |> arrange(-Value)
 house |> arrange(Neighborhood, -Value)
+
+# Counting ####
+
+house |> count(Boro)
+house |> count(Boro) |> arrange(-n)
+house |> count(Boro, sort=TRUE)
+
+house |> count(Boro, Neighborhood, sort=TRUE)
