@@ -34,5 +34,42 @@ ggplot(house, aes(x=SqFt, y=ValueSqFt)) + geom_point(aes(color=Boro))
 
 ## Point Shape and Size ####
 
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_point(shape=1)
 
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_point(shape=1, size=1)
 
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro, shape=Boro)) +
+    geom_point()
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_point(aes(shape=Boro))
+
+## Deal with Overplotting ####
+
+### Opacity ####
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_point(shape=1, size=1, alpha=1/3)
+
+### Jittering ####
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_jitter(shape=1, size=1)
+
+### Zoom In ####
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_point(shape=1, size=1) +
+    xlim(NA, 1000000)
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_point(shape=1, size=1) +
+    scale_x_continuous(limits=c(NA, 1000000))
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt, color=Boro)) +
+    geom_point(shape=1, size=1) +
+    coord_cartesian(xlim=c(NA, 1000000))
+
+# Smoothing Line ####
