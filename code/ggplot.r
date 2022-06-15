@@ -227,3 +227,41 @@ ggplot(house, aes(x=ValueSqFt)) +
     ) +
     geom_density(color='black', show.legend=FALSE) +
     facet_wrap(~Boro)
+
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_density(color='black', show.legend=FALSE) +
+    geom_histogram(
+        aes(y=..density.., fill=Boro),
+        show.legend=FALSE, bins=30
+    ) +
+    facet_wrap(~Boro)
+
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_histogram(
+        aes(y=..density.., fill=Boro),
+        show.legend=FALSE, bins=30
+    ) +
+    geom_density(color='black', show.legend=FALSE) +
+    facet_wrap(~Boro)
+
+# Barplots ####
+
+house |> count(Boro)
+
+ggplot(house |> count(Boro), aes(x=Boro, y=n)) + geom_col()
+
+ggplot(house, aes(x=Boro)) + geom_bar()
+
+ggplot(house, aes(x=Boro)) +
+    geom_bar() +
+    geom_label(data=house |> count(Boro), aes(y=n, label=n))
+
+ggplot(house, aes(x=Boro)) +
+    geom_bar() +
+    geom_label(data=house |> count(Boro), aes(y=n+50, label=n))
+
+ggplot(house, aes(x=Boro)) +
+    geom_bar() +
+    geom_label(data=house |> count(Boro), aes(y=n+50, label=n)) +
+    labs(title='Count by Boro', y='Count') +
+    theme(plot.title=element_text(hjust=0.5))
