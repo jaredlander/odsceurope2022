@@ -42,3 +42,35 @@ house |> slice(-1)
 house |> head()
 house |> slice(1:6)
 house |> slice_head(n=6)
+
+# Filtering Rows by Logical Condition ####
+
+house |> filter(Units <= 100)
+house |> filter(Units == 100)
+
+house |> filter(Boro == 'Queens')
+
+house |>
+    filter(Units <= 100 & SqFt <= 50000)
+
+house |>
+    filter(Units > 100 | SqFt > 100000)
+
+house |>
+    filter(Boro == 'Queens' & Units >= 100)
+
+house |>
+    filter(Boro == 'Queens' | Boro == 'Brooklyn')
+
+house |>
+    filter(Boro == 'Queens' | Boro == 'Brooklyn' | Boro == 'Manhattan')
+
+# this does not work
+# house |>
+#     filter(Boro == 'Queens' | 'Brooklyn' | 'Manhattan')
+
+house |>
+    filter(Boro %in% c('Queens', 'Brooklyn', 'Manhattan'))
+
+house |>
+    filter(Boro %in% c('Queens', 'Brooklyn', 'Manhattan') & Units <= 100)
