@@ -98,3 +98,9 @@ house
 house |> mutate(Year - 10)
 house |> mutate(Year=Year - 10)
 house
+
+# Sorting Data ####
+
+house |> arrange(Value)
+house |> arrange(-Value)
+house |> arrange(Neighborhood, -Value)
