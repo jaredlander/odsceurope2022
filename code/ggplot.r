@@ -140,3 +140,30 @@ ggplot(house, aes(x=SqFt, y=ValueSqFt)) +
     theme(legend.position='none')
 
 
+# Themes ####
+
+p <- ggplot(house, aes(x=SqFt, y=ValueSqFt)) +
+    geom_point(shape=1, size=1, aes(color=Boro)) +
+    geom_smooth(aes(color=Boro), se=FALSE) +
+    geom_smooth(color='black') +
+    xlim(NA, 1000000) +
+    facet_wrap( ~ Boro) +
+    theme(legend.position='none')
+p
+
+p + theme(legend.position='bottom')
+
+library(ggthemes)
+
+p + theme_economist()
+p + theme_economist_white()
+
+p + theme_economist() + scale_color_economist()
+
+p + theme_stata() + scale_color_stata()
+
+p + theme_fivethirtyeight() + scale_color_fivethirtyeight()
+
+p + theme_excel() + scale_color_excel()
+p + theme_excel_new() + scale_color_excel_new()
+
