@@ -103,3 +103,40 @@ ggplot(house, aes(x=SqFt, y=ValueSqFt)) +
     geom_smooth(aes(color=Boro), se=FALSE) +
     geom_smooth(color='black') +
     xlim(NA, 1000000)
+
+# Small Multiples ####
+
+# Trellis
+# Facets
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt)) +
+    geom_point(shape=1, size=1, aes(color=Boro)) +
+    geom_smooth(aes(color=Boro), se=FALSE) +
+    geom_smooth(color='black') +
+    xlim(NA, 1000000) +
+    facet_wrap( ~ Boro)
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt)) +
+    geom_point(shape=1, size=1, aes(color=Boro), show.legend=FALSE) +
+    geom_smooth(aes(color=Boro), se=FALSE, show.legend=FALSE) +
+    geom_smooth(color='black') +
+    xlim(NA, 1000000) +
+    facet_wrap( ~ Boro)
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt)) +
+    geom_point(shape=1, size=1, aes(color=Boro)) +
+    geom_smooth(aes(color=Boro), se=FALSE) +
+    geom_smooth(color='black') +
+    xlim(NA, 1000000) +
+    facet_wrap( ~ Boro) +
+    theme(legend.position='none')
+
+ggplot(house, aes(x=SqFt, y=ValueSqFt)) +
+    geom_point(shape=1, size=1, aes(color=Boro)) +
+    geom_smooth(aes(color=Boro), se=FALSE) +
+    geom_smooth(color='black') +
+    xlim(NA, 1000000) +
+    facet_wrap( ~ Boro, ncol=1) +
+    theme(legend.position='none')
+
+
