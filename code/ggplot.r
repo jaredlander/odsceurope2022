@@ -190,3 +190,40 @@ ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
 ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
     geom_histogram(bins=30, show.legend=FALSE) +
     facet_wrap( ~ Boro )
+
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_density()
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_density(fill='grey50')
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_density(fill='hotpink')
+
+ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
+    geom_density(aes(fill=Boro))
+
+ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
+    geom_density(aes(fill=Boro), alpha=1/2)
+
+ggplot(house, aes(x=ValueSqFt, fill=Boro)) +
+    geom_density(show.legend=FALSE) +
+    facet_wrap(~Boro)
+
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_histogram(bins=30, aes(y=..density..)) +
+    geom_density()
+
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_histogram(
+        aes(y=..density.., fill=Boro),
+        show.legend=FALSE, bins=30, alpha=1/2
+    ) +
+    geom_density(aes(color=Boro), show.legend=FALSE) +
+    facet_wrap(~Boro)
+
+ggplot(house, aes(x=ValueSqFt)) +
+    geom_histogram(
+        aes(y=..density.., fill=Boro),
+        show.legend=FALSE, bins=30, alpha=1/2
+    ) +
+    geom_density(color='black', show.legend=FALSE) +
+    facet_wrap(~Boro)
